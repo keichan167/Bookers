@@ -1,0 +1,37 @@
+<div style = "margin-left: 30px;">
+  <% if @book.errors.any? %>
+  <!--エラーの数表示-->
+    <% if (@book.errors.count == 1) %>
+      <%= @book.errors.count %>error
+    <% else %>
+      <%= @book.errors.count %>errors
+    <% end %>
+    <!--エラーの内容の表示-->
+    <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  <% end %>
+</div>
+
+<div style = "margin-left: 30px;">
+  <h2>Editing Book</h2>
+
+  <%= form_with model: @book do |f| %>
+    Title<br>
+    <%= f.text_field :title %>
+    <br>
+    <br>
+    Body<br>
+    <%= f.text_area :body %>
+    <br>
+    <%= f.submit 'Update Book' %>
+  <% end %>
+  </div>
+
+<div style = "margin-left: 30px;">
+  <%= link_to "show", "/books/#{@book.id}" %>
+  <%= link_to "back", "/books" %>
+
+</div>
